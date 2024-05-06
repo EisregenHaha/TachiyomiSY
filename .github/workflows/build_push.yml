@@ -1,14 +1,5 @@
 name: Release Builder
 on:
-  push:
-   branches: 
-    - 'release'
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
-on:
   workflow_dispatch:
     inputs:
       artifactName:
@@ -27,7 +18,11 @@ on:
         description: Release name
         type: string
         required: true
- 
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     name: Build release app
