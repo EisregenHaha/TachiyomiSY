@@ -7,6 +7,26 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+    inputs:
+      artifactName:
+        description: Artifact name
+        type: string
+        required: true
+      tagName:
+        description: Tag name
+        type: string
+        required: true
+      prerelease:
+        description: Prerelease
+        type: boolean
+        required: true
+      releaseName:
+        description: Release name
+        type: string
+        required: true
  
 jobs:
   build:
